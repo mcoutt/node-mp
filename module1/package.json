@@ -1,0 +1,30 @@
+{
+  "name": "hwnodejs",
+  "version": "1.0.0",
+  "description": "read csv file and write it in txt with pipe stream",
+  "main": "index.js",
+  "scripts": {
+    "task1": "nodemon ./task1/reverse.js",
+    "task2": "nodemon -q ./task2/pipeLoad.js",
+    "runTask1Babel": "nodemon --exec babel-node ./task1/reverse.js",
+    "buildTask1": "babel ./task1/reverse.js -o build/reverse.js",
+    "serveTask1": "node build/reverse.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mcoutt/node-tasks.git"
+  },
+  "keywords": [],
+  "author": "Mickle",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.0.0-rc.1",
+    "@babel/core": "^7.0.0-rc.1",
+    "@babel/node": "^7.0.0-rc.1",
+    "@babel/preset-env": "^7.0.0-rc.1",
+    "nodemon": "^2.0.3"
+  },
+  "dependencies": {
+    "csvtojson": "^2.0.10"
+  }
+}
