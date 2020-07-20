@@ -1,8 +1,13 @@
 import { Container } from 'typedi';
 
+const logs = (serviceMethod, args) => {
+    console.log(`Invoked ${serviceMethod} method of User Service with ${args} args`)
+}
+
+const userService = await Container.get('UserService')
 
 const createUser = async (req, res) => {
-    const userService = await Container.get('UserService')
+    logs('Create', req.body)
     const User = {
         login: req.body.login,
         password: req.body.password,
@@ -24,6 +29,7 @@ const createUser = async (req, res) => {
 
 
 const updateUser = async (req, res) => {
+    logs('Update', req.body)
     if (req.body.id) {
         const userService = await Container.get('UserService')
         const getUser = await userService.getUserById(req.body.id)
@@ -47,6 +53,7 @@ const updateUser = async (req, res) => {
 
 
 const deleteUser = async (req, res) => {
+    logs('Delete', req.params)
     const userService = await Container.get('UserService')
     if (req.params.id) {
         userService.deleteUser(req.params.id)
@@ -63,6 +70,7 @@ const deleteUser = async (req, res) => {
 }
 
 const getUser = async (req, res) => {
+    logs('Get User', req.params)
     const userService = await Container.get('UserService')
     if (req.params.id) {
         const user = await userService.getUser(req.params.id)
@@ -77,12 +85,15 @@ const getUser = async (req, res) => {
 }
 
 const getAllUsers = async (req, res) => {
+    console.log(`Invoked serviceMethod} method of User Service with args} args`)
+    // logs('Get All Users', 'without')
     const userService = await Container.get('UserService')
     res.status(200).json(await userService.getUsers())
 }
 
 
 const getAutoSuggestUsers = async (req, res) => {
+    logs('Get Auto Suggest Users', req.params)
     const loginSubstring = req.params.suggest
     const limit = req.params.limit
     const num = parseInt(limit, 10)

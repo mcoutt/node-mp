@@ -1,8 +1,12 @@
 import { Container } from 'typedi';
 import { Permission } from "../db/config/constants";
 
+const logs = (serviceMethod, args) => {
+    return console.log(`Invoked ${serviceMethod} method of Group Service with ${args} args`)
+}
 
 const createGroup = async (req, res) => {
+    logs('Create', req.body)
     const groupService = await Container.get('GroupService')
     const group = {
         name: req.body.name,
@@ -28,6 +32,7 @@ const createGroup = async (req, res) => {
 
 
 const updateGroup = async (req, res) => {
+    logs('Update', req.body)
     if (req.body.id) {
         const groupService = await Container.get('GroupService')
         const getGroup = await groupService.getGroupById(req.body.id)
@@ -49,6 +54,7 @@ const updateGroup = async (req, res) => {
 
 
 const deleteGroup = async (req, res) => {
+    logs('Delete', req.params)
     const groupService = await Container.get('GroupService')
     if (req.params.id) {
         groupService.deleteGroup(req.params.id)
@@ -65,6 +71,7 @@ const deleteGroup = async (req, res) => {
 }
 
 const getGroup = async (req, res) => {
+    logs('Get Group', req.params)
     const groupService = await Container.get('GroupService')
     if (req.params.id) {
         const group = await groupService.getGroupById(req.params.id)
@@ -79,12 +86,14 @@ const getGroup = async (req, res) => {
 }
 
 const getAllGroups = async (req, res) => {
+    logs('Get All Groups', 'without')
     const groupService = await Container.get('GroupService')
     res.status(200).json(await groupService.getGroups())
 }
 
 
 const addUserToGroup = async (req, res) => {
+    logs('Add User To Group', req.body)
     const groupId = req.body.groupId
     const userIds = req.body.userIds
 
@@ -104,6 +113,7 @@ const addUserToGroup = async (req, res) => {
 
 
 const delUserFromGroup = async (req, res) => {
+    logs('Del User From Group', req.body)
     const groupId = req.body.groupId
     const userId = req.body.userId
 

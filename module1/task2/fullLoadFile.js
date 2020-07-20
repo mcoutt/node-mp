@@ -5,7 +5,7 @@ const getJson = async () => {
 	return csv().fromFile(csvFilePath);
 }
 
-// return with full load in RAM
-// getJson().then(res => console.log(res))
+// return with full load in RAM for Evaluation Criteria - 3
+getJson().then(res => console.log(res))
 
 
