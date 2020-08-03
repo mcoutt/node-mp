@@ -1,14 +1,8 @@
 const stdin = process.openStdin();
 
 
-const reverse = (arr) => {
-    let getArray = [];
-
-    for (let i = 0; i < arr.length; i++) {
-        getArray.push(arr.charAt(i))
-    }
-    let resAr = getArray.reverse();
-    console.log(resAr.join(''));
+const reverse = (str) => {
+    console.log(str.split('').reverse().join(''))
 }
 
 
