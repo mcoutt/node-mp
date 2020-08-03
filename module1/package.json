@@ -7,15 +7,18 @@
     "task1": "nodemon ./task1/reverse.js",
     "task2": "nodemon -q ./task2/pipeLoad.js",
     "runTask1Babel": "nodemon --exec babel-node ./task1/reverse.js",
+    "runTask2Babel": "nodemon --exec babel-node ./task2/pipeLoad.js",
     "buildTask1": "babel ./task1/reverse.js -o build/reverse.js",
-    "serveTask1": "node build/reverse.js"
+    "buildTask2": "babel ./task2/pipeLoad.js -o build/pipeLoad.js",
+    "serveTask1": "node build/reverse.js",
+    "serveTask2": "node build/pipeLoad.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/mcoutt/node-tasks.git"
+    "url": "git@git.epam.com:mykhailo_koshelnyk/hwnodejs.git"
   },
   "keywords": [],
-  "author": "Mickle",
+  "author": "",
   "license": "ISC",
   "devDependencies": {
     "@babel/cli": "^7.0.0-rc.1",
