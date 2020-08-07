@@ -1,0 +1,35 @@
+{
+  "name": "hwnodejs",
+  "version": "1.0.0",
+  "description": "read csv file and write it in txt with pipe stream",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon --exec babel-node app.js",
+    "build": "babel app.js  --presets @babel/preset-env -o build/app.js",
+    "serve": "node build/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@git.epam.com:mykhailo_koshelnyk/hwnodejs.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.0.0-rc.1",
+    "@babel/core": "^7.0.0-rc.1",
+    "@babel/node": "^7.0.0-rc.1",
+    "@babel/preset-env": "^7.0.0-rc.1",
+    "nodemon": "^2.0.3"
+  },
+  "dependencies": {
+    "@hapi/joi": "^17.1.1",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "csvtojson": "^2.0.10",
+    "express": "^4.17.1",
+    "lodash": "^4.17.15",
+    "uuid": "^7.0.3",
+    "uuidv4": "^6.0.7"
+  }
+}
