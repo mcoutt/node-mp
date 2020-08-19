@@ -14,6 +14,6 @@ module.exports = function (router) {
     router.get('/users', getAllUsers)
     router.get('/user', getAutoSuggestUsers)
     router.get('/user/:id', getUser)
-    router.put('/user', updateUser)
+    router.put('/user/:id', updateUser)
     router.delete('/user/:id', deleteUser)
 }
