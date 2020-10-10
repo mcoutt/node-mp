@@ -8,24 +8,26 @@ const getOneUser = (id) => {
 
 
 const createUser = (req, res) => {
-    console.log(Users)
-    let User = {
-        id: uuid(),
-        login: req.body.login,
-        password: req.body.password,
-        age: req.body.age,
-        isDeleted: false
+    const user = Users.find(u => u.login === req.body.login)
+    if (!user) {
+        let User = {
+            id: uuid(),
+            login: req.body.login,
+            password: req.body.password,
+            age: req.body.age,
+            isDeleted: false
+        }
+        Users.push(User)
+        res.status(200).json(User)
+    } else {
+        res.status(404).json({"error": "user exists"})
     }
-
-    Users.push(User)
-    res.status(200).json(User)
 }
 
 
 const updateUser = (req, res) => {
-    const id = req.body.id ? req.body.id : req.params.id
-    if (id) {
-        const user = getOneUser(id)
+    const user = getOneUser(req.params.id)
+    if (user.id) {
         if (user) {
             user.login = req.body.login ? req.body.login : user.login;
             user.password = req.body.password ? req.body.password : user.password;
