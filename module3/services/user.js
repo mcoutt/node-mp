@@ -1,13 +1,17 @@
-import {Container} from 'typedi';
+import {Container, Inject, Service} from 'typedi';
 
 const {Sequelize} = require('sequelize')
 const Op = Sequelize.Op;
 
+@Service()
 export default class UserService {
 
-    userModel = Container.get('userModel')
-    groupModel = Container.get('groupModel')
-    usersGroupsModel = Container.get('usersGroupsModel')
+    @Inject('userModel') userModel
+    @Inject('groupModel') groupModel
+
+    // userModel = Container.get('userModel')
+    // groupModel = Container.get('groupModel')
+    // usersGroupsModel = Container.get('usersGroupsModel')
 
     createUser = async (user) => {
         const exist = await this.getUser(user.id)
