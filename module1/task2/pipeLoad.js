@@ -1,46 +1,48 @@
 const csv = require('csvtojson');
-const fs = require('fs')
+const fs = require('fs');
+const { pipeline } = require('stream');
 
 const csvFilePath = './task2/csv/example.csv'
 const txtFilePath = './task2/fromCSV.txt'
 
 
-const readStream = fs.createReadStream(csvFilePath, {
-    highWaterMark: 20
-});
-const writeStream = fs.createWriteStream(txtFilePath, 'utf8');
+pipeline(
+    fs.createReadStream(csvFilePath, {
+        highWaterMark: 20
+    }),
+    csv({output:"json"}),
+    fs.createWriteStream(txtFilePath, 'utf8'),
+    (error) => {
+        if (error) {
+            console.error(`Happened some error: ${error}`)
+        }
+        console.log('Complete success')
+    }
+)
 
-const getJson = (bufferData) => {
-    csv({output: "json"})
-        .fromStream(bufferData)
-        .subscribe((json) => {
-            // console.log(json)
-            writeStream.write(json)
-        })
-}
 
-try {
-    // readStream.pipe(csv()).pipe(writeStream);
+// try {
+//     readStream.pipe(csv()).pipe(writeStream);
+// } catch (e) {
+//     console.log(`Some error happened: ${e}`)
+// }
 
-    // getJson(readStream)
 
-    readStream.on('data', (chunk => {
-        const buf = Buffer.from(JSON.stringify(chunk));
-        const temp = JSON.parse(chunk.toString());
-        console.log(temp)
-        writeStream.write(chunk)
-    csv()
-        .on('data', (data) => {
-            console.log(data)
 
-            const d = data.toString('utf8')
-            console.log(d)
-            writeStream.write(d)
-        })
-    }))
+// const file = '../../../mock.txt'
+// const wrFile = '../../../write-mock.txt'
 
-    readStream.on('close', () => console.log('Stream closed'))
-    readStream.on('error', (err => console.log(`Stream error: ${err}`)))
-} catch (e) {
-    console.log(`Some error happened: ${e}`)
-}
+// const rStream = fs.createReadStream(file, {
+//     highWaterMark: 100000
+// })
+// const wStream = fs.createWriteStream(wrFile, 'utf8')
+//
+// rStream.on('data', (chunk => {
+//     wStream.write(chunk)
+// }))
+//
+// rStream.on('close', () => {
+//     wStream.end('ending Writable Stream')
+//     console.log('stream was closed')
+// })
+// rStream.on('error', (err => console.error(err)))

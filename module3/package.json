@@ -1,7 +1,7 @@
 {
   "name": "hwnodejs",
   "version": "1.0.0",
-  "description": "read csv file and write it in txt with pipe stream",
+  "description": "simple testing apps by user and groups entities",
   "main": "app.js",
   "scripts": {
     "start": "nodemon --exec babel-node app.js",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@git.epam.com:mykhailo_koshelnyk/hwnodejs.git"
+    "url": "https://github.com/mcoutt/node-tasks.git"
   },
   "keywords": [],
   "author": "",
